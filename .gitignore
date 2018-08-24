@@ -4,7 +4,7 @@ ehthumbs.db
 Desktop.ini
 
 # Python:
-audio_vad_file/*
-audio_file/*
+/audio_vad_file/*
+/audio_file/*
 !.gitignore
-/test.wav
+/test.wavS
