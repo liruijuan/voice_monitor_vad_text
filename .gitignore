@@ -7,4 +7,4 @@ Desktop.ini
 /audio_vad_file/*
 /audio_file/*
 !.gitignore
-/test.wavS
+/test.wav
