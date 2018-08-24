@@ -1,0 +1,10 @@
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python:
+audio_vad_file/*
+audio_file/*
+!.gitignore
+/test.wav
