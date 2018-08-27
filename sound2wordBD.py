@@ -60,17 +60,24 @@ def asr_main(audio_data_va):
     token = get_access_token()
     ## token = "以上获取token令牌可以保持下来，不用一直获取，一个月有效"
     uuid = "8C-16-45-44-09-E1"  # 机器 MAC 地址
-    resp = baidu_asr(signal, uuid, token)       # resp为list格式
     #print(resp)
-    if '，' not in resp:
-        res = ''.join(resp)        # 将list格式转化为str
-    else:
+
+    try:
+        resp = baidu_asr(signal, uuid, token)  # resp为list格式
+        if '，' not in resp:
+            res = ''.join(resp)        # 将list格式转化为str
+        else:
+            res = "None"
+
+    except:
+        print("音频质量差")
         res = "None"
+
     print(res)
     return res
 
 if __name__ == '__main__':
-    asr_main("16k.wav")
+    asr_main("20180824152909chunk-00.wav")
 
 
 

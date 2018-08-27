@@ -7,7 +7,7 @@ def wav_to_pcm(wav_file):
     pcm_file = "%s.pcm"%("D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\" + filename.split(".")[0])
 
     #就是此前在cmd窗口中输入命令，这里面就是让Python帮我们在cmd中执行命令
-    os.system("D:/ffmpeg/bin/ffmpeg -y  -i %s  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 %s" %(wav_file,pcm_file))
+    os.system("D:/ffmpeg/bin/ffmpeg -loglevel quiet -y  -i %s  -acodec pcm_s16le -f s16le -ac 1 -ar 16000 %s" %(wav_file,pcm_file))
 
     return pcm_file
 
