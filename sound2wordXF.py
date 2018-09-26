@@ -68,4 +68,4 @@ def wordfromS(audioFilePath):
 
 if __name__ == "__main__":
     retdata = wordfromS("16k.wav")
-    #print(retdata)
+    print(retdata)

@@ -7,6 +7,7 @@ import collections
 import contextlib
 import sys
 import time
+from datetime import datetime
 import os
 import shutil
 
@@ -97,8 +98,9 @@ def main(audio_path):
     vad_filepath = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\"
 
     for i, segment in enumerate(segments):
-        (filepath, tempfilename) = os.path.split(audio_path)
-        path = vad_filepath + tempfilename.split(".")[0] +'chunk-%002d.wav' % (i,)
+        dt = datetime.now()
+        nowtime = dt.strftime("%Y%m%d%H%M%S%f")
+        path = vad_filepath + nowtime +'-chunk-%002d.wav' % (i,)
         print(' Writing %s' % (path,))
 
         write_wave(path, segment, sample_rate)
