@@ -31,8 +31,8 @@ def audio_vad():
             nowtime = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
             record_path = path + nowtime + r".wav"  # 以时间命名
             record.write_audio_to_wave(record_path)
-            record_file = removes_silence(record_path)  # 音频文件消除时间 >1s 的静音部分
-            record_vad.main(record_file)  # 分割生成的音频文件
+            # record_file = removes_silence(record_path)  # 音频文件消除时间 >1s 的静音部分
+            record_vad.main(record_path)  # 分割生成的音频文件
             # print('语音切割完成时间：%s!' % time.ctime())
         elif frames == [] and len(flag) == 0:
             break
@@ -112,7 +112,7 @@ threads.append(t2)
 
 if __name__ == '__main__':
     for t in threads:
-        t.setDaemon(True)
+        # t.setDaemon(True)
         t.start()
 
     for t in threads:

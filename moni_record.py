@@ -33,7 +33,7 @@ class AudioRecorder:
 
     def record(self,temp):
         global flag_initial
-        flag_initial = [x for x in range(1, 20)]
+        flag_initial = [x for x in range(1, 200)]
 
         if temp > 800:
             print("检测到信号，当前阈值", temp)
@@ -71,7 +71,7 @@ class AudioRecorder:
 
 
 if __name__ == '__main__':
-    flag = [x for x in range(1, 20)]
+    flag = [x for x in range(1, 200)]
     rec = AudioRecorder(flag)
     while True:
 
