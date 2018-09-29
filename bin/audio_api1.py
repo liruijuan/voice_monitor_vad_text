@@ -31,8 +31,8 @@ def audio_vad():
             nowtime = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
             record_path = path + nowtime + r".wav"  # 以时间命名
             record.write_audio_to_wave(record_path)
-            # record_file = removes_silence(record_path)  # 音频文件消除时间 >1s 的静音部分
-            record_vad.main(record_path)  # 分割生成的音频文件
+            record_file = removes_silence(record_path)  # 音频文件消除时间 >1s 的静音部分
+            record_vad.main(record_file)  # 分割生成的音频文件
             # print('语音切割完成时间：%s!' % time.ctime())
         elif frames == [] and len(flag) == 0:
             break
@@ -59,6 +59,7 @@ def vad_asr_store():
 
     while True:
         #try:
+
         # 更新文件夹，将新生成的（新被切割的）音频文件标记，然后进行语音听写等操作
         getFileListType(audio_vad_file, deal_type_dict)
         # print(deal_type_dict)
@@ -94,7 +95,7 @@ def vad_asr_store():
         len_dict_list.append(len_dict)
         len_max_list = max([len(list(v)) for k, v in itertools.groupby(len_dict_list)])
         print(len_max_list)
-        if len_max_list > 20:
+        if len_max_list > 200:  # 当检测次数达到200仍没有新文件进来，就结束进程
             break
         continue
         #print("标记及处理完毕")
@@ -111,9 +112,9 @@ t2 = threading.Thread(target=vad_asr_store)
 threads.append(t2)
 
 if __name__ == '__main__':
-    for t in threads:
-        # t.setDaemon(True)
-        t.start()
+    t1.start()
+    t2.setDaemon(True)
+    t2.start()
 
     for t in threads:
         t.join()

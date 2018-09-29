@@ -17,9 +17,12 @@ def play_mp3(file_name):
 NOISE_TOLERANCE = 90
 
 def removes_silence(silence_file):
-    silence_out = "%s.wav"%("D:\\pycharm_project\\voice_monitor_vad_text\\audio_silence\\"+ silence_file.split(".")[0])
-    os.system("D:/ffmpeg/bin/ffmpeg -i %s -af silenceremove=0:0:0:-1:1:-50dB -ac 1 %s" %(silence_file, silence_out))
+    [dirname, filename] = os.path.split(silence_file)
+    silence_out = "%s.wav"%("D:\\pycharm_project\\voice_monitor_vad_text\\audio_silence\\"+ filename.split(".")[0])
+    os.system("D:/ffmpeg/bin/ffmpeg -loglevel quiet -i %s -af silenceremove=0:0:0:-1:1:-40dB -ac 1 -y %s" %(silence_file, silence_out))
+
+    return silence_out
 
 if __name__ == '__main__':
-    filename = "20180824223131.wav"
+    filename = "20180928221747.wav"
     removes_silence(filename)
