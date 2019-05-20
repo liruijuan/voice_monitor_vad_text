@@ -18,7 +18,7 @@ NOISE_TOLERANCE = 90
 
 def removes_silence(silence_file):
     [dirname, filename] = os.path.split(silence_file)
-    silence_out = "%s.wav"%("D:\\pycharm_project\\voice_monitor_vad_text\\audio_silence\\"+ filename.split(".")[0])
+    silence_out = "%s.wav"%("audio_silence/"+ filename.split(".")[0])
     os.system("D:/ffmpeg/bin/ffmpeg -loglevel quiet -i %s -af silenceremove=0:0:0:-1:1:-40dB -ac 1 -y %s" %(silence_file, silence_out))
 
     return silence_out

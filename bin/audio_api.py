@@ -13,8 +13,8 @@ import shutil
 from mark_new_file import getFileListType
 import mongo_datasave
 
-path = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_file\\"    # 录音得到的音频文件夹
-audio_vad_file = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\"      # 切割后的音频文件夹
+path = "audio_file/"    # 录音得到的音频文件夹
+audio_vad_file = "audio_vad_file/"      # 切割后的音频文件夹
 
 
 def audio_vad():
@@ -43,7 +43,7 @@ def vadfile_creat():
         os.chmod(path, stat.S_IWRITE)    #删除文件的只读属性
         func(path)
     if os.path.exists(audio_vad_file):
-        shutil.rmtree("D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file",onerror=remove_readonly)  #将整个文件夹删除
+        shutil.rmtree("audio_vad_file",onerror=remove_readonly)  #将整个文件夹删除
         os.makedirs(audio_vad_file)  # 创建一个文件夹
     else:
         os.makedirs(audio_vad_file) # 没有文件夹就新建一个
@@ -71,7 +71,7 @@ def vad_asr_store():
                 #mu = threading.Lock()  # 1、创建一个锁
                 #if mu.acquire():    # 2、获取锁状态，一个线程有锁时，别的线程只能在外面等着
                 '''#存入txt文档
-                vad_text_file = "D:\\pycharm_project\\voice_monitor_vad_text\\vad_test.txt"
+                vad_text_file = "vad_test.txt"
                 with open(vad_text_file, 'a') as f:
                     if res != None:
                         # text_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))

@@ -77,7 +77,7 @@ def asr_main(audio_data_va):
     return res
 
 if __name__ == '__main__':
-    audio_vad_file = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\"
+    audio_vad_file = "audio_vad_file/"
     asr_main(audio_vad_file+"20180912232458583261chunk-06.wav")
 
 

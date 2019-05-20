@@ -11,7 +11,7 @@ from datetime import datetime
 import os
 import shutil
 
-import webrtcvad
+import webrtcvad # 引用模块来自https://github.com/wiseman/py-webrtcvad
 
 def read_wave(path):
     with contextlib.closing(wave.open(path, 'rb')) as wf:   #创建上下文管理器，在执行过程离开with语句体时自动执行object.close()
@@ -95,7 +95,7 @@ def main(audio_path):
     frames = frame_generator(30, audio, sample_rate)
     frames = list(frames)
     segments = vad_collector(sample_rate, 30, 300, vad, frames)
-    vad_filepath = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\"
+    vad_filepath = "audio_vad_file/"
 
     for i, segment in enumerate(segments):
         dt = datetime.now()

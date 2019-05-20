@@ -14,8 +14,8 @@ import mongo_datasave
 import itertools
 from wav2pcm import removes_silence
 
-path = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_file\\"    # 录音得到的音频文件夹
-audio_vad_file = "D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file\\"      # 切割后的音频文件夹
+path = "audio_file/"    # 录音得到的音频文件夹
+audio_vad_file = "audio_vad_file/"      # 切割后的音频文件夹
 
 
 def audio_vad():
@@ -30,7 +30,7 @@ def audio_vad():
             record.stop()
             nowtime = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
             record_path = path + nowtime + r".wav"  # 以时间命名
-            record.write_audio_to_wave(record_path)
+            record.write_audio_to_wave(record_path)  # 将声音写入音频文件
             record_file = removes_silence(record_path)  # 音频文件消除时间 >1s 的静音部分
             record_vad.main(record_file)  # 分割生成的音频文件
             # print('语音切割完成时间：%s!' % time.ctime())
@@ -45,7 +45,7 @@ def vadfile_creat():
         os.chmod(path, stat.S_IWRITE)    #删除文件的只读属性
         func(path)
     if os.path.exists(audio_vad_file):
-        shutil.rmtree("D:\\pycharm_project\\voice_monitor_vad_text\\audio_vad_file",onerror=remove_readonly)  #将整个文件夹删除
+        shutil.rmtree("/audio_vad_file",onerror=remove_readonly)  #将整个文件夹删除
         os.makedirs(audio_vad_file)  # 创建一个文件夹
     else:
         os.makedirs(audio_vad_file) # 没有文件夹就新建一个
@@ -59,7 +59,6 @@ def vad_asr_store():
 
     while True:
         #try:
-
         # 更新文件夹，将新生成的（新被切割的）音频文件标记，然后进行语音听写等操作
         getFileListType(audio_vad_file, deal_type_dict)
         # print(deal_type_dict)
@@ -74,7 +73,7 @@ def vad_asr_store():
                 #mu = threading.Lock()  # 1、创建一个锁
                 #if mu.acquire():    # 2、获取锁状态，一个线程有锁时，别的线程只能在外面等着
                 '''#存入txt文档
-                vad_text_file = "D:\\pycharm_project\\voice_monitor_vad_text\\vad_test.txt"
+                vad_text_file = "vad_test.txt"
                 with open(vad_text_file, 'a') as f:
                     if res != None:
                         # text_time = time.strftime("%Y%m%d%H%M%S", time.localtime(time.time()))
